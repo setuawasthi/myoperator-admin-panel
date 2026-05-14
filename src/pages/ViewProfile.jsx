@@ -4,6 +4,7 @@ import { users, updateUser, deleteUser } from '../data/users';
 
 import DeleteConfirmModal from '../components/DeleteConfirmModal';
 import Toast from '../components/Toast';
+import Tabs from '../components/ui/Tabs';
 
 const inputBase = 'h-10 w-full rounded px-4 text-sm bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] border transition-all duration-200 focus:outline-none';
 const inputNormal = `${inputBase} border-[var(--semantic-border-input)] placeholder:text-[var(--semantic-text-placeholder)] focus:border-[var(--semantic-border-input-focus)] focus:shadow-[0_0_0_1px_rgba(43,188,202,0.15)]`;
@@ -197,7 +198,7 @@ export default function ViewProfile() {
         {/* Left Sidebar */}
         <div className="w-full lg:w-80 shrink-0 space-y-5">
           {/* Profile Card */}
-          <div className="rounded-lg border-t-4 border-t-[var(--semantic-brand)] border-x border-b border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] shadow-sm p-5 text-center">
+          <div className="rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] shadow-sm p-5 text-center">
             <div className="w-24 h-24 rounded-full bg-[var(--semantic-primary)] flex items-center justify-center mx-auto mb-3 ring-4 ring-white shadow-md">
               <svg className="w-12 h-12 text-[var(--semantic-text-inverted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
@@ -233,7 +234,7 @@ export default function ViewProfile() {
           </div>
 
           {/* About Me */}
-          <div className="rounded-lg border-t-4 border-t-[var(--semantic-brand)] border-x border-b border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] shadow-sm">
+          <div className="rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] shadow-sm">
             <div className="px-5 py-3 border-b border-[var(--semantic-border-layout)]">
               <h3 className="text-sm font-semibold text-[var(--semantic-text-secondary)]">About Me</h3>
             </div>
@@ -270,21 +271,7 @@ export default function ViewProfile() {
         <div className="flex-1 min-w-0">
           <div className="rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] shadow-sm overflow-hidden">
             {/* Tabs */}
-            <div className="flex border-b border-[var(--semantic-border-layout)]">
-              {tabs.map((tab) => (
-                <button
-                  key={tab.key}
-                  onClick={() => setActiveTab(tab.key)}
-                  className={`px-5 py-3 text-sm font-medium transition-all border-b-2 -mb-px ${
-                    activeTab === tab.key
-                      ? 'border-[var(--semantic-brand)] text-[var(--semantic-brand)]'
-                      : 'border-transparent text-[var(--semantic-text-muted)] hover:text-[var(--semantic-text-secondary)]'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
+            <Tabs value={activeTab} onChange={setActiveTab} items={tabs} />
 
             <div className="p-6">
               {/* Profile Tab */}
