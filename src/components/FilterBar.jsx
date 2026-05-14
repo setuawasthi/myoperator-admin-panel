@@ -25,10 +25,10 @@ export default function FilterBar({ filters, onFilterChange, onOpenModal, onClea
       )}
       <button
         onClick={onOpenModal}
-        className={`inline-flex items-center gap-2 whitespace-nowrap h-10 px-4 rounded text-sm font-medium border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--semantic-primary)] focus-visible:ring-offset-2 ${
+        className={`inline-flex items-center gap-2 whitespace-nowrap h-10 px-4 rounded text-sm font-medium border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--semantic-primary)] focus-visible:ring-offset-2 bg-transparent ${
           hasActiveFilters
-            ? 'border-[var(--semantic-primary)] bg-[var(--semantic-primary-surface)] text-[var(--semantic-primary)]'
-            : 'border-[var(--semantic-border-primary)] bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-secondary)] hover:bg-[var(--semantic-primary-surface)]'
+            ? 'border-[var(--semantic-primary)] text-[var(--semantic-primary)] hover:bg-[var(--semantic-primary-surface)]'
+            : 'border-[var(--semantic-border-primary)] text-[var(--semantic-text-secondary)] hover:bg-[var(--semantic-bg-ui)]'
         }`}
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
