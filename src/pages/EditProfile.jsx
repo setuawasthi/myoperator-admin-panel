@@ -232,7 +232,7 @@ export default function EditProfile() {
                 <button
                   type="button"
                   onClick={() => navigate(`/users/${id}`)}
-                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap h-10 px-6 rounded text-sm font-medium border border-[var(--semantic-border-layout)] bg-white text-[var(--semantic-text-secondary)] hover:bg-[var(--semantic-bg-ui)] transition-all"
+                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap h-10 px-6 rounded text-sm font-medium border border-[var(--semantic-border-layout)] bg-transparent text-[var(--semantic-text-secondary)] hover:bg-[var(--semantic-bg-ui)] transition-all"
                 >
                   Cancel
                 </button>
