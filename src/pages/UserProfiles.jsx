@@ -333,8 +333,7 @@ export default function UserProfiles() {
                     key={user.id}
                     items={[
                       { label: 'View profile', onClick: () => navigate(`/users/${user.id}`) },
-                      { label: 'Edit', onClick: () => navigate(`/users/${user.id}`) },
-                      { label: 'Delete', danger: true, onClick: () => setUserToDelete(user) },
+                      { label: 'Edit', onClick: () => navigate(`/users/edit/${user.id}`) },
                     ]}
                   >
                     <td className="px-4 py-3 align-middle text-[var(--semantic-text-primary)] font-medium">{user.id}</td>
@@ -372,7 +371,7 @@ export default function UserProfiles() {
                           },
                           {
                             label: 'Edit',
-                            onClick: () => navigate(`/users/${user.id}`),
+                            onClick: () => navigate(`/users/edit/${user.id}`),
                           },
                         ]}
                       />

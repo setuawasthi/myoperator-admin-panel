@@ -225,6 +225,12 @@ export default function ViewProfile() {
         </div>
         <div className="flex items-center gap-3">
           <button
+            onClick={() => navigate(`/users/edit/${id}`)}
+            className="inline-flex items-center gap-2 whitespace-nowrap h-9 px-4 rounded text-sm font-medium bg-[var(--semantic-primary)] text-[var(--semantic-text-inverted)] hover:bg-[var(--semantic-primary-hover)] transition-all duration-200"
+          >
+            Edit
+          </button>
+          <button
             onClick={() => setShowDelete(true)}
             className="inline-flex items-center gap-2 whitespace-nowrap h-9 px-4 rounded text-sm font-medium border border-[var(--semantic-error-primary)] bg-transparent text-[var(--semantic-error-primary)] hover:bg-[var(--semantic-error-surface)] transition-all duration-200"
           >
