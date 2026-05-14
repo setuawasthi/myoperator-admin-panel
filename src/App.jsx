@@ -77,7 +77,7 @@ function AppRoutes() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/users" element={<UserProfiles />} />
         <Route path="/users/add" element={<AddProfile />} />
-        <Route path="/users/edit/:id" element={<EditRedirect />} />
+        <Route path="/users/edit/:id" element={<EditProfile />} />
         <Route path="/users/:id" element={<ViewProfile />} />
         <Route path="/roles" element={<PlaceholderPage title="Roles" />} />
         <Route path="/departments" element={<PlaceholderPage title="Departments" />} />
