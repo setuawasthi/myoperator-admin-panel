@@ -29,7 +29,7 @@ export default function Input({
     lg: 'h-11 px-4 text-base',
   };
 
-  const base = 'w-full rounded border bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] placeholder:text-[var(--semantic-text-placeholder)] transition-colors duration-200';
+  const base = 'w-full rounded border-[var(--semantic-border-input)] bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] placeholder:text-[var(--semantic-text-placeholder)] transition-colors duration-200 focus:border-[var(--semantic-border-input-focus)]';
 
   const stateClasses = error
     ? 'border-[var(--semantic-error-border)] focus:border-[var(--semantic-error-primary)] focus:shadow-[0_0_0_1px_rgba(240,68,56,0.15)]'

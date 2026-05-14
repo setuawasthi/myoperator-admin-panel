@@ -34,7 +34,7 @@ export default function ActionsMenu({ items }) {
   const dropdown = (
     <div
       ref={dropdownRef}
-      className="fixed z-[9999] w-44 rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] shadow-lg animate-fade-in py-1"
+      className="fixed z-[9999] w-44 rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] shadow-md animate-fade-in py-1"
       style={{
         top: coords?.top ?? 0,
         right: coords?.right ?? 0,

@@ -261,14 +261,14 @@ export default function UserProfiles() {
               <button
                 key={tab.key}
                 onClick={() => handleTabChange(tab.key)}
-                className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--semantic-primary)] focus-visible:ring-offset-2 ${
+                className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-md text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--semantic-primary)] focus-visible:ring-offset-2 ${
                   activeTab === tab.key
                     ? 'bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] shadow-sm'
                     : 'text-[var(--semantic-text-muted)] hover:text-[var(--semantic-text-secondary)]'
                 }`}
               >
                 {tab.label}
-                <span className={`inline-flex items-center justify-center min-w-[20px] h-5 px-1 rounded-full text-xs font-semibold ${activeTab === tab.key ? 'bg-[var(--semantic-primary-surface)] text-[var(--semantic-primary)]' : 'bg-[var(--semantic-bg-hover)] text-[var(--semantic-text-muted)]'}`}>
+                <span className={`inline-flex items-center justify-center min-w-[20px] h-5 px-1 rounded-full text-xs font-semibold transition-colors duration-200 ${activeTab === tab.key ? 'bg-[var(--semantic-primary-surface)] text-[var(--semantic-primary)]' : 'bg-[var(--semantic-bg-hover)] text-[var(--semantic-text-muted)]'}`}>
                   {tab.count}
                 </span>
               </button>
@@ -286,7 +286,7 @@ export default function UserProfiles() {
       </div>
 
       {/* Table */}
-      <div className="rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] shadow-sm overflow-hidden animate-fade-in stagger-3">
+      <div key={`table-${activeTab}`} className="rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] shadow-sm overflow-hidden animate-fade-in">
         {loading ? (
           <SkeletonTable rows={itemsPerPage} cols={tableColumns.length} />
         ) : (

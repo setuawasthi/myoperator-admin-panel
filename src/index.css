@@ -145,9 +145,9 @@ button, input, textarea, select, a {
   transition: all 200ms ease-in-out;
 }
 
-/* Kill browser default dark focus ring EVERYWHERE */
+/* Kill browser default dark focus ring EVERYWHERE with !important */
 *:focus {
-  outline: none;
+  outline: none !important;
 }
 
 /* Keyboard focus uses colored ring (not black) via Tailwind focus-visible utilities */

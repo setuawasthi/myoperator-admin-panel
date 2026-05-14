@@ -7,7 +7,7 @@ export default function LoginToggleModal({ user, onConfirm, onCancel }) {
 
   return (
     <>
-      <div className="fixed inset-0 z-[9999] bg-black/50 animate-fade-in" onClick={onCancel} />
+      <div className="fixed inset-0 z-[9999] bg-black/30 animate-fade-in" onClick={onCancel} />
       <div className="fixed left-1/2 top-1/2 z-[9999] -translate-x-1/2 -translate-y-1/2 w-full max-w-sm mx-4 animate-slide-in">
         <div className="relative rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] shadow-lg p-6">
           {/* Close button */}

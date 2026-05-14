@@ -32,7 +32,7 @@ export default function RowContextMenu({ children, items }) {
   const menu = (
     <div
       ref={menuRef}
-      className="fixed z-[9999] w-44 rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] shadow-lg animate-fade-in py-1"
+      className="fixed z-[9999] w-44 rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] shadow-md animate-fade-in py-1"
       style={{ top: coords.y, left: coords.x }}
     >
       {items.map((item, idx) => (

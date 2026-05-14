@@ -74,7 +74,7 @@ export default function SimpleSelect({ value, onChange, options = [], placeholde
         type="button"
         disabled={disabled}
         onClick={() => !disabled && setIsOpen(!isOpen)}
-        className="inline-flex items-center justify-between w-full h-10 px-4 rounded text-sm bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] border border-[var(--semantic-border-input)] transition-colors duration-200 focus:border-[var(--semantic-border-input-focus)] focus:shadow-[0_0_0_1px_rgba(43,188,202,0.15)] disabled:cursor-not-allowed disabled:bg-[var(--semantic-disabled-secondary)] disabled:text-[var(--semantic-disabled-text)] disabled:border-[var(--semantic-disabled-border)]"
+        className="inline-flex items-center justify-between w-full h-10 px-4 rounded text-sm bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] border-[var(--semantic-border-input)] transition-colors duration-200 focus:border-[var(--semantic-border-input-focus)] focus:shadow-[0_0_0_1px_rgba(43,188,202,0.15)] disabled:cursor-not-allowed disabled:bg-[var(--semantic-disabled-secondary)] disabled:text-[var(--semantic-disabled-text)] disabled:border-[var(--semantic-disabled-border)]"
       >
         <span className={selectedOption ? 'text-[var(--semantic-text-primary)]' : 'text-[var(--semantic-text-placeholder)]'}>
           {selectedOption ? selectedOption.label : placeholder}
