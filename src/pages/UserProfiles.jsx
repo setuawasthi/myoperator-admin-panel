@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { users, deleteUser } from '../data/users';
 import FilterBar from '../components/FilterBar';
@@ -10,6 +10,7 @@ import Toast from '../components/Toast';
 import Pagination from '../components/Pagination';
 import ActionsMenu from '../components/ActionsMenu';
 import RowContextMenu from '../components/RowContextMenu';
+import { SkeletonTable, SkeletonLine, SkeletonAvatar } from '../components/ui/Skeleton';
 
 export default function UserProfiles() {
   const navigate = useNavigate();
@@ -20,10 +21,16 @@ export default function UserProfiles() {
   const [toast, setToast] = useState(null);
   const [sortConfig, setSortConfig] = useState({ key: 'id', direction: 'asc' });
   const [activeTab, setActiveTab] = useState('all');
+  const [loading, setLoading] = useState(true);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [showFilterModal, setShowFilterModal] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 600);
+    return () => clearTimeout(timer);
+  }, []);
 
   const forceRefresh = () => setRefreshKey((k) => k + 1);
 
@@ -210,26 +217,40 @@ export default function UserProfiles() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 animate-fade-in stagger-1">
-        {[
-          { label: 'Total Users', value: users.length, icon: 'M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z', color: 'bg-[var(--semantic-primary-surface)] text-[var(--semantic-primary)]' },
-          { label: 'Active', value: users.filter((u) => u.status === 'Active').length, icon: 'M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z', color: 'bg-[var(--semantic-success-surface)] text-[var(--semantic-success-primary)]' },
-          { label: 'Inactive', value: users.filter((u) => u.status === 'Inactive').length, icon: 'M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z', color: 'bg-[var(--semantic-error-surface)] text-[var(--semantic-error-primary)]' },
-          { label: 'Admins', value: users.filter((u) => u.isAdmin === 'Group Admin').length, icon: 'M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z', color: 'bg-[var(--semantic-info-surface)] text-[var(--semantic-info-primary)]' },
-        ].map((stat) => (
-          <div key={stat.label} className="rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] px-3 py-2.5 shadow-sm">
-            <div className="flex items-center gap-2.5">
-              <div className={`w-7 h-7 rounded-md ${stat.color} flex items-center justify-center`}>
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d={stat.icon} />
-                </svg>
-              </div>
-              <div>
-                <p className="text-[10px] font-medium text-[var(--semantic-text-muted)] leading-tight">{stat.label}</p>
-                <p className="text-sm font-semibold text-[var(--semantic-text-primary)] leading-tight">{stat.value}</p>
+        {loading ? (
+          Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] px-3 py-2.5 shadow-sm">
+              <div className="flex items-center gap-2.5">
+                <SkeletonAvatar size="sm" />
+                <div className="space-y-1.5">
+                  <SkeletonLine className="h-3 w-16" />
+                  <SkeletonLine className="h-4 w-8" />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          [
+            { label: 'Total Users', value: users.length, icon: 'M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z', color: 'bg-[var(--semantic-primary-surface)] text-[var(--semantic-primary)]' },
+            { label: 'Active', value: users.filter((u) => u.status === 'Active').length, icon: 'M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z', color: 'bg-[var(--semantic-success-surface)] text-[var(--semantic-success-primary)]' },
+            { label: 'Inactive', value: users.filter((u) => u.status === 'Inactive').length, icon: 'M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z', color: 'bg-[var(--semantic-error-surface)] text-[var(--semantic-error-primary)]' },
+            { label: 'Admins', value: users.filter((u) => u.isAdmin === 'Group Admin').length, icon: 'M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z', color: 'bg-[var(--semantic-info-surface)] text-[var(--semantic-info-primary)]' },
+          ].map((stat) => (
+            <div key={stat.label} className="rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] px-3 py-2.5 shadow-sm">
+              <div className="flex items-center gap-2.5">
+                <div className={`w-7 h-7 rounded-md ${stat.color} flex items-center justify-center`}>
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d={stat.icon} />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-[10px] font-medium text-[var(--semantic-text-muted)] leading-tight">{stat.label}</p>
+                  <p className="text-sm font-semibold text-[var(--semantic-text-primary)] leading-tight">{stat.value}</p>
+                </div>
+              </div>
+            </div>
+          ))
+        )}
       </div>
 
       {/* Tabs + Filters Row */}
@@ -266,28 +287,31 @@ export default function UserProfiles() {
 
       {/* Table */}
       <div className="rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] shadow-sm overflow-hidden animate-fade-in stagger-3">
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead className="bg-[var(--semantic-bg-ui)]">
-              <tr>
-                {tableColumns.map((col) => (
-                  <th
-                    key={col.key}
-                    onClick={() => col.sortable && handleSort(col.key)}
-                    className={`px-4 py-3 text-left font-semibold text-[var(--semantic-text-secondary)] whitespace-nowrap ${col.width || ''} ${
-                      col.sortable ? 'cursor-pointer hover:bg-[var(--semantic-bg-hover)] transition-colors' : ''
-                    }`}
-                  >
-                    <div className="flex items-center gap-1.5">
-                      {col.label}
-                      {col.sortable && <SortIcon column={col.key} />}
-                    </div>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {paginatedUsers.length === 0 ? (
+        {loading ? (
+          <SkeletonTable rows={itemsPerPage} cols={tableColumns.length} />
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-[var(--semantic-bg-ui)]">
+                <tr>
+                  {tableColumns.map((col) => (
+                    <th
+                      key={col.key}
+                      onClick={() => col.sortable && handleSort(col.key)}
+                      className={`px-4 py-3 text-left font-semibold text-[var(--semantic-text-secondary)] whitespace-nowrap ${col.width || ''} ${
+                        col.sortable ? 'cursor-pointer hover:bg-[var(--semantic-bg-hover)] transition-colors' : ''
+                      }`}
+                    >
+                      <div className="flex items-center gap-1.5">
+                        {col.label}
+                        {col.sortable && <SortIcon column={col.key} />}
+                      </div>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {paginatedUsers.length === 0 ? (
                 <tr>
                   <td colSpan={9} className="px-4 py-12 text-center">
                     <div className="flex flex-col items-center gap-3">
@@ -359,7 +383,7 @@ export default function UserProfiles() {
             </tbody>
           </table>
         </div>
-
+        )}
         <Pagination
           currentPage={currentPage}
           totalItems={sortedUsers.length}

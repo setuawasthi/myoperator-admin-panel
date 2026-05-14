@@ -5,6 +5,7 @@ import { users, updateUser, deleteUser } from '../data/users';
 import DeleteConfirmModal from '../components/DeleteConfirmModal';
 import Toast from '../components/Toast';
 import Tabs from '../components/ui/Tabs';
+import { SkeletonCard, SkeletonLine, SkeletonAvatar, SkeletonInput } from '../components/ui/Skeleton';
 
 const inputBase = 'h-10 w-full rounded px-4 text-sm bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] border transition-all duration-200 focus:outline-none';
 const inputNormal = `${inputBase} border-[var(--semantic-border-input)] placeholder:text-[var(--semantic-text-placeholder)] focus:border-[var(--semantic-border-input-focus)] focus:shadow-[0_0_0_1px_rgba(43,188,202,0.15)]`;
@@ -57,8 +58,14 @@ export default function ViewProfile() {
   const [toast, setToast] = useState(null);
   const [showDelete, setShowDelete] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const user = users.find((u) => u.id === parseInt(id));
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, [id]);
 
   const [formData, setFormData] = useState({
     name: '', email: '', phone: '', department: '', role: '',
@@ -81,6 +88,39 @@ export default function ViewProfile() {
       });
     }
   }, [user, id]);
+
+  if (loading) {
+    return (
+      <div className="p-6 animate-fade-in space-y-5">
+        <div className="flex items-center gap-3">
+          <SkeletonAvatar size="sm" />
+          <div className="space-y-1.5">
+            <SkeletonLine className="h-5 w-40" />
+            <SkeletonLine className="h-3 w-24" />
+          </div>
+        </div>
+        <div className="flex flex-col lg:flex-row gap-5">
+          <div className="w-full lg:w-80 shrink-0 space-y-5">
+            <SkeletonCard lines={2} avatar />
+            <SkeletonCard lines={3} />
+            <SkeletonCard lines={6} />
+          </div>
+          <div className="flex-1 min-w-0 space-y-5">
+            <SkeletonLine className="h-10 w-full" />
+            <div className="space-y-4">
+              <SkeletonInput />
+              <SkeletonInput />
+              <SkeletonInput />
+              <SkeletonInput />
+              <SkeletonInput />
+              <SkeletonInput />
+            </div>
+            <SkeletonLine className="h-10 w-32" />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (!user) {
     return (
@@ -186,7 +226,7 @@ export default function ViewProfile() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setShowDelete(true)}
-            className="inline-flex items-center gap-2 whitespace-nowrap h-9 px-4 rounded text-sm font-medium bg-[var(--semantic-error-primary)] text-[var(--semantic-text-inverted)] hover:bg-[var(--semantic-error-hover)] transition-all"
+            className="inline-flex items-center gap-2 whitespace-nowrap h-9 px-4 rounded text-sm font-medium border border-[var(--semantic-error-primary)] bg-transparent text-[var(--semantic-error-primary)] hover:bg-[var(--semantic-error-surface)] transition-all duration-200"
           >
             Delete
           </button>
@@ -307,7 +347,7 @@ export default function ViewProfile() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="inline-flex items-center justify-center gap-2 whitespace-nowrap h-10 px-6 rounded text-sm font-medium bg-[var(--semantic-success-primary)] text-[var(--semantic-text-inverted)] hover:bg-[var(--semantic-success-hover)] transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--semantic-success-primary)] focus-visible:ring-offset-2"
+                      className="inline-flex items-center justify-center gap-2 whitespace-nowrap h-10 px-6 rounded text-sm font-medium bg-[var(--semantic-primary)] text-[var(--semantic-text-inverted)] hover:bg-[var(--semantic-primary-hover)] transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--semantic-primary)] focus-visible:ring-offset-2"
                     >
                       {isSubmitting ? 'Updating...' : 'Update Profile'}
                     </button>
@@ -347,7 +387,7 @@ export default function ViewProfile() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="inline-flex items-center justify-center gap-2 whitespace-nowrap h-10 px-6 rounded text-sm font-medium bg-[var(--semantic-success-primary)] text-[var(--semantic-text-inverted)] hover:bg-[var(--semantic-success-hover)] transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--semantic-success-primary)] focus-visible:ring-offset-2"
+                        className="inline-flex items-center justify-center gap-2 whitespace-nowrap h-10 px-6 rounded text-sm font-medium bg-[var(--semantic-primary)] text-[var(--semantic-text-inverted)] hover:bg-[var(--semantic-primary-hover)] transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--semantic-primary)] focus-visible:ring-offset-2"
                       >
                         {isSubmitting ? 'Changing...' : 'Change Password'}
                       </button>
@@ -403,7 +443,7 @@ export default function ViewProfile() {
                         <button
                           type="submit"
                           disabled={isSubmitting}
-                          className="inline-flex items-center justify-center gap-2 whitespace-nowrap h-10 px-6 rounded text-sm font-medium bg-[var(--semantic-success-primary)] text-[var(--semantic-text-inverted)] hover:bg-[var(--semantic-success-hover)] transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--semantic-success-primary)] focus-visible:ring-offset-2"
+                          className="inline-flex items-center justify-center gap-2 whitespace-nowrap h-10 px-6 rounded text-sm font-medium bg-[var(--semantic-primary)] text-[var(--semantic-text-inverted)] hover:bg-[var(--semantic-primary-hover)] transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--semantic-primary)] focus-visible:ring-offset-2"
                         >
                           {isSubmitting ? 'Resetting...' : 'Reset Password'}
                         </button>

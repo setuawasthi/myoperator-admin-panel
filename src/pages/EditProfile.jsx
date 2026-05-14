@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { users, updateUser, deleteUser } from '../data/users';
 import DeleteConfirmModal from '../components/DeleteConfirmModal';
 import Toast from '../components/Toast';
+import { SkeletonCard, SkeletonLine, SkeletonAvatar, SkeletonInput } from '../components/ui/Skeleton';
 
 const inputBase = 'h-10 w-full rounded px-3 text-sm bg-transparent text-[var(--semantic-text-primary)] border transition-all duration-200 focus:outline-none';
 const inputNormal = `${inputBase} border-[var(--semantic-border-input)] placeholder:text-[var(--semantic-text-placeholder)] hover:border-[var(--semantic-border-secondary)] focus:border-[var(--semantic-border-input-focus)] focus:shadow-[0_0_0_3px_rgba(43,188,202,0.1)]`;
@@ -48,6 +49,7 @@ export default function EditProfile() {
   const [showDelete, setShowDelete] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const user = users.find((u) => u.id === parseInt(id));
 
@@ -55,6 +57,11 @@ export default function EditProfile() {
     name: '', email: '', phone: '',
     googleProfile: '', fbProfile: '', linkedinProfile: '',
   });
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, [id]);
 
   useEffect(() => {
     if (user) {
@@ -65,6 +72,38 @@ export default function EditProfile() {
       });
     }
   }, [user, id]);
+
+  if (loading) {
+    return (
+      <div className="p-6 animate-fade-in space-y-5">
+        <div className="flex items-center gap-3">
+          <SkeletonAvatar size="sm" />
+          <div className="space-y-1.5">
+            <SkeletonLine className="h-5 w-40" />
+            <SkeletonLine className="h-3 w-24" />
+          </div>
+        </div>
+        <div className="flex flex-col lg:flex-row gap-5">
+          <div className="w-full lg:w-80 shrink-0 space-y-5">
+            <SkeletonCard lines={2} avatar />
+            <SkeletonCard lines={3} />
+            <SkeletonCard lines={6} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] shadow-sm overflow-hidden p-5 space-y-4">
+              <SkeletonInput />
+              <SkeletonInput />
+              <SkeletonInput />
+              <SkeletonInput />
+              <SkeletonInput />
+              <SkeletonInput />
+              <SkeletonLine className="h-9 w-32" />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (!user) {
     return (
