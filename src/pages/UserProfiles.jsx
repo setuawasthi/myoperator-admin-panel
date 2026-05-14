@@ -332,6 +332,7 @@ export default function UserProfiles() {
                   <RowContextMenu
                     key={user.id}
                     items={[
+                      { label: 'View profile', onClick: () => navigate(`/users/${user.id}`) },
                       { label: 'Edit', onClick: () => navigate(`/users/edit/${user.id}`) },
                     ]}
                   >
@@ -364,6 +365,10 @@ export default function UserProfiles() {
                     <td className="px-4 py-3 align-middle">
                       <ActionsMenu
                         items={[
+                          {
+                            label: 'View profile',
+                            onClick: () => navigate(`/users/${user.id}`),
+                          },
                           {
                             label: 'Edit',
                             onClick: () => navigate(`/users/edit/${user.id}`),

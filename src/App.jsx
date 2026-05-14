@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import UserProfiles from './pages/UserProfiles';
 import AddProfile from './pages/AddProfile';
 import EditProfile from './pages/EditProfile';
+import ViewProfile from './pages/ViewProfile';
 import Login from './pages/Login';
 
 function Dashboard() {
@@ -59,7 +60,7 @@ function PlaceholderPage({ title }) {
 
 function EditRedirect() {
   const { id } = useParams();
-  return <Navigate to={`/users/edit/${id}`} replace />;
+  return <Navigate to={`/users/${id}`} replace />;
 }
 
 function AppRoutes() {
@@ -77,7 +78,7 @@ function AppRoutes() {
         <Route path="/users" element={<UserProfiles />} />
         <Route path="/users/add" element={<AddProfile />} />
         <Route path="/users/edit/:id" element={<EditProfile />} />
-        <Route path="/users/:id" element={<EditRedirect />} />
+        <Route path="/users/:id" element={<ViewProfile />} />
         <Route path="/roles" element={<PlaceholderPage title="Roles" />} />
         <Route path="/departments" element={<PlaceholderPage title="Departments" />} />
         <Route path="/settings" element={<PlaceholderPage title="Settings" />} />
