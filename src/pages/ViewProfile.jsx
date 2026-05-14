@@ -7,8 +7,8 @@ import Toast from '../components/Toast';
 import Tabs from '../components/ui/Tabs';
 import { SkeletonCard, SkeletonLine, SkeletonAvatar, SkeletonInput } from '../components/ui/Skeleton';
 
-const inputBase = 'h-10 w-full rounded px-4 text-sm bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] border transition-all duration-200 focus:outline-none';
-const inputNormal = `${inputBase} border-[var(--semantic-border-input)] placeholder:text-[var(--semantic-text-placeholder)] focus:border-[var(--semantic-border-input-focus)] focus:shadow-[0_0_0_1px_rgba(43,188,202,0.15)]`;
+const inputBase = 'h-10 w-full rounded px-4 text-sm bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] border-[var(--semantic-border-input)] transition-all duration-200 focus:outline-none focus:border-[var(--semantic-border-input-focus)] focus:shadow-[0_0_0_3px_rgba(43,188,202,0.1)]';
+const inputNormal = `${inputBase} placeholder:text-[var(--semantic-text-placeholder)]`;
 
 function InfoItem({ icon, label, value }) {
   return (
@@ -322,7 +322,7 @@ export default function ViewProfile() {
             <div className="p-6">
               {/* Profile Tab */}
               {activeTab === 'profile' && (
-                <form onSubmit={handleUpdateProfile} className="max-w-2xl space-y-5">
+                <form onSubmit={handleUpdateProfile} className="max-w-2xl space-y-5 animate-fade-in">
                   <div className="grid grid-cols-1 gap-5">
                     <div className="space-y-1.5">
                       <label className="text-sm font-semibold text-[var(--semantic-text-secondary)]">Name</label>
@@ -363,7 +363,7 @@ export default function ViewProfile() {
 
               {/* Change Password Tab */}
               {activeTab === 'changePassword' && (
-                <div className="max-w-xl space-y-6">
+                <div className="max-w-xl space-y-6 animate-fade-in">
                   <form onSubmit={handleChangePassword} className="space-y-5">
                     <PasswordInput
                       label="Old Password"
@@ -404,7 +404,7 @@ export default function ViewProfile() {
 
               {/* Password Reset Tab */}
               {activeTab === 'passwordReset' && (
-                <div className="max-w-xl space-y-6">
+                <div className="max-w-xl space-y-6 animate-fade-in">
                   {resetResult ? (
                     <div className="rounded-lg border border-[var(--semantic-success-border)] bg-[var(--semantic-success-surface)] p-5 space-y-3">
                       <div className="flex items-center gap-2 text-[var(--semantic-success-text)]">

@@ -145,18 +145,9 @@ button, input, textarea, select, a {
   transition: all 200ms ease-in-out;
 }
 
-/* Input field states - gray default, blue on focus, darker gray on hover */
-input, textarea, select {
-  border-color: var(--semantic-border-input);
-}
-
-input:hover, textarea:hover, select:hover {
-  border-color: var(--semantic-border-layout);
-}
-
+/* Kill browser default dark focus ring globally — components handle their own */
 input:focus, textarea:focus, select:focus {
-  border-color: var(--semantic-border-input-focus);
-  box-shadow: 0 0 0 3px rgba(43, 188, 202, 0.1);
+  outline: none;
 }
 
 /* Animations */

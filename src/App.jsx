@@ -58,11 +58,6 @@ function PlaceholderPage({ title }) {
   );
 }
 
-function EditRedirect() {
-  const { id } = useParams();
-  return <Navigate to={`/users/${id}`} replace />;
-}
-
 function AppRoutes() {
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
@@ -79,6 +74,7 @@ function AppRoutes() {
         <Route path="/users/add" element={<AddProfile />} />
         <Route path="/users/edit/:id" element={<EditProfile />} />
         <Route path="/users/:id" element={<ViewProfile />} />
+        <Route path="/users/view/:id" element={<Navigate to="/users/:id" replace />} />
         <Route path="/roles" element={<PlaceholderPage title="Roles" />} />
         <Route path="/departments" element={<PlaceholderPage title="Departments" />} />
         <Route path="/settings" element={<PlaceholderPage title="Settings" />} />

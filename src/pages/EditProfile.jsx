@@ -97,7 +97,7 @@ export default function EditProfile() {
     updateUser(parseInt(id), formData);
     setIsSubmitting(false);
     setToast({ type: 'success', message: 'Profile updated successfully' });
-    setTimeout(() => navigate(`/users/${id}`), 1200);
+    setTimeout(() => navigate('/users'), 1200);
   };
 
   if (loading) {
@@ -149,7 +149,7 @@ export default function EditProfile() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <button
-            onClick={() => navigate(`/users/${id}`)}
+            onClick={() => navigate('/users')}
             className="p-2 rounded text-[var(--semantic-text-muted)] hover:text-[var(--semantic-text-primary)] hover:bg-[var(--semantic-bg-ui)] transition-all duration-200"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
@@ -161,7 +161,7 @@ export default function EditProfile() {
         <div className="flex items-center gap-3">
           <button
             type="button"
-            onClick={() => navigate(`/users/${id}`)}
+            onClick={() => navigate('/users')}
             className="inline-flex items-center justify-center gap-2 whitespace-nowrap h-9 px-4 rounded text-sm font-medium border border-[var(--semantic-border-layout)] bg-transparent text-[var(--semantic-text-secondary)] hover:bg-[var(--semantic-bg-ui)] transition-all duration-200"
           >
             Cancel
