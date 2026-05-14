@@ -9,6 +9,7 @@ import LoginStatusBadge from '../components/LoginStatusBadge';
 import Toast from '../components/Toast';
 import Pagination from '../components/Pagination';
 import ActionsMenu from '../components/ActionsMenu';
+import RowContextMenu from '../components/RowContextMenu';
 
 export default function UserProfiles() {
   const navigate = useNavigate();
@@ -304,10 +305,13 @@ export default function UserProfiles() {
                 </tr>
               ) : (
                 paginatedUsers.map((user, index) => (
-                  <tr
+                  <RowContextMenu
                     key={user.id}
-                    className="border-t border-[var(--semantic-border-layout)] hover:bg-[var(--semantic-bg-ui)] transition-colors animate-fade-in"
-                    style={{ animationDelay: `${index * 0.03}s` }}
+                    items={[
+                      { label: 'View profile', onClick: () => navigate(`/users/${user.id}`) },
+                      { label: 'Edit', onClick: () => navigate(`/users/${user.id}`) },
+                      { label: 'Delete', danger: true, onClick: () => setUserToDelete(user) },
+                    ]}
                   >
                     <td className="px-4 py-3 align-middle text-[var(--semantic-text-primary)] font-medium">{user.id}</td>
                     <td className="px-4 py-3 align-middle">
@@ -349,7 +353,7 @@ export default function UserProfiles() {
                         ]}
                       />
                     </td>
-                  </tr>
+                  </RowContextMenu>
                 ))
               )}
             </tbody>
