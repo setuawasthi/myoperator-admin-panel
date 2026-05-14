@@ -1,0 +1,62 @@
+---
+description: "Apply myOperator design system rules when generating React/Tailwind UI code. Enforces semantic color tokens, typography, z-index, and component patterns."
+alwaysApply: true
+---
+
+# myOperator Design System — Color Tokens
+
+**CRITICAL: NEVER use hardcoded hex colors.** Always use CSS variables:
+
+```css
+/* Primary UI */
+--semantic-primary: #343E55          /* Primary actions, headers */
+--semantic-primary-hover: #2F384D
+--semantic-primary-surface: #EBECEE  /* Light bg for primary elements */
+
+/* Brand Accent — interactive elements ONLY */
+--semantic-brand: #2BBCCA            /* Focus rings, active states, links */
+--semantic-brand-hover: #1F858F
+--semantic-brand-surface: #EAF8FA
+
+/* Backgrounds */
+--semantic-bg-primary: #FFFFFF       /* Page/card background */
+--semantic-bg-ui: #F5F5F5            /* Subtle surface bg */
+--semantic-bg-hover: #D5D7DA
+
+/* Text */
+--semantic-text-primary: #181D27
+--semantic-text-secondary: #343E55
+--semantic-text-muted: #717680
+--semantic-text-placeholder: #A2A6B1
+--semantic-text-link: #4275D6
+--semantic-text-inverted: #FFFFFF
+
+/* Borders */
+--semantic-border-layout: #E9EAEB
+--semantic-border-input: #E9EAEB
+--semantic-border-input-focus: #2BBCCA
+
+/* States */
+--semantic-error-primary: #F04438;   --semantic-error-surface: #FEF3F2
+--semantic-success-primary: #17B26A; --semantic-success-surface: #ECFDF3
+--semantic-warning-primary: #F79009; --semantic-warning-surface: #FFFAEB
+--semantic-info-primary: #4275D6;    --semantic-info-surface: #ECF1FB
+
+/* Disabled */
+--semantic-disabled-primary: #A2A6B1
+--semantic-disabled-secondary: #EBECEE
+--semantic-disabled-text: #717680
+--semantic-disabled-border: #D5D7DA
+```
+
+**Figma hex → token mapping:**
+| Hex | Token |
+|-----|-------|
+| `#343E55` | `--semantic-primary` |
+| `#F5F5F5` | `--semantic-bg-ui` |
+| `#717680` | `--semantic-text-muted` |
+| `#F04438` | `--semantic-error-primary` |
+| `#17B26A` | `--semantic-success-primary` |
+| `#E9EAEB` | `--semantic-border-layout` |
+
+**Do NOT use turquoise (#2BBCCA) for:** charts, decorative elements, large backgrounds. Use `--semantic-primary` for data visualization.

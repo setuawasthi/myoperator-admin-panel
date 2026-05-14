@@ -1,0 +1,27 @@
+{
+  "extraKnownMarketplaces": {
+    "myoperator-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "Ankish8/myoperator-plugins"
+      }
+    }
+  },
+  "skills": {
+    "myoperator-design": {
+      "enabled": true
+    },
+    "myoperator-workflows": {
+      "enabled": true
+    },
+    "design-system-validator": {
+      "enabled": true
+    },
+    "component-analysis": {
+      "enabled": true
+    },
+    "storybook-generator": {
+      "enabled": true
+    }
+  }
+}

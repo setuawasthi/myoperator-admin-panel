@@ -1,22 +1,18 @@
 {
-  "name": "myoperator-cursor-plugins",
-  "owner": {
-    "name": "myOperator",
-    "email": "ankish@myoperator.co"
-  },
-  "metadata": {
-    "description": "Cursor plugins for the myOperator design system and developer workflows"
-  },
+  "name": "myoperator-plugins",
+  "version": "1.0.0",
   "plugins": [
+    {
+      "name": "myoperator-cursor-design",
+      "version": "1.0.0",
+      "description": "myOperator design system rules for Cursor",
+      "path": "plugins/myoperator-design"
+    },
     {
       "name": "myoperator-cursor-workflows",
       "version": "1.0.0",
-      "description": "Cursor dev workflow plugin for myOperator component creation, release publishing, and bootstrap compatibility enforcement.",
-      "author": { "name": "myOperator", "email": "ankish@myoperator.co" },
-      "source": "cursor-plugins/myoperator-cursor-workflows",
-      "homepage": "https://github.com/Ankish8/myoperator-plugins",
-      "category": "development",
-      "keywords": ["cursor", "commands", "dev-workflow", "storybook", "publish", "myoperator"]
+      "description": "myOperator dev workflow commands for Cursor",
+      "path": "plugins/myoperator-workflows"
     }
   ]
 }
