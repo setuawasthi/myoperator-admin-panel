@@ -51,7 +51,7 @@ export default function Pagination({ currentPage, totalItems, itemsPerPage, onPa
             <select
               value={itemsPerPage}
               onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
-              className="h-9 pl-3 pr-7 rounded text-sm font-medium bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-secondary)] border border-[var(--semantic-border-layout)] focus:outline-none focus:border-[var(--semantic-border-input-focus)] cursor-pointer appearance-none"
+              className="h-9 pl-3 pr-7 rounded text-sm font-medium bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-secondary)] border border-[var(--semantic-border-layout)] focus:border-[var(--semantic-border-input-focus)] cursor-pointer appearance-none transition-colors duration-200"
             >
               <option value={10}>10</option>
               <option value={25}>25</option>

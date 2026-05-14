@@ -21,7 +21,7 @@ export default function Login() {
     navigate('/');
   };
 
-  const inputBase = 'h-11 w-full rounded-lg border bg-white px-4 text-sm text-[#181D27] placeholder:text-[#A2A6B1] focus:outline-none focus:border-[#2BBCCA] focus:ring-1 focus:ring-[#2BBCCA]/15 transition-all duration-200';
+  const inputBase = 'h-11 w-full rounded-lg border bg-white px-4 text-sm text-[#181D27] placeholder:text-[#A2A6B1] focus:border-[#2BBCCA] focus:ring-1 focus:ring-[#2BBCCA]/15 transition-colors duration-200';
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#F5F5F5] p-4">

@@ -107,7 +107,7 @@ export default function ComboboxSelect({
     }
   };
 
-  const inputBase = 'h-10 w-full rounded px-4 pr-10 text-sm bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] border transition-all duration-200 focus:outline-none';
+  const inputBase = 'h-10 w-full rounded px-4 pr-10 text-sm bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] border transition-colors duration-200';
   const inputNormal = `${inputBase} border-[var(--semantic-border-input)] placeholder:text-[var(--semantic-text-placeholder)] focus:border-[var(--semantic-border-input-focus)] focus:shadow-[0_0_0_1px_rgba(43,188,202,0.15)]`;
   const inputError = `${inputBase} border-[var(--semantic-error-border)] focus:border-[var(--semantic-error-primary)] focus:shadow-[0_0_0_1px_rgba(240,68,56,0.1)]`;
   const inputDisabled = 'disabled:cursor-not-allowed disabled:bg-[var(--semantic-disabled-secondary)] disabled:text-[var(--semantic-disabled-text)] disabled:border-[var(--semantic-disabled-border)]';
