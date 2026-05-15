@@ -147,21 +147,16 @@ export default function UserProfiles() {
   };
 
   const SortIcon = ({ column }) => {
-    if (sortConfig.key !== column) {
-      return (
-        <svg className="w-3 h-3 text-[var(--semantic-text-placeholder)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+    const isActive = sortConfig.key === column;
+    return (
+      <span className={`inline-block transition-all duration-200 ${isActive ? 'text-[var(--semantic-brand)]' : 'text-[var(--semantic-text-placeholder)]'}`}>
+        <svg
+          className={`w-3 h-3 transition-transform duration-200 ${isActive && sortConfig.direction === 'desc' ? 'rotate-180' : ''}`}
+          fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
         </svg>
-      );
-    }
-    return sortConfig.direction === 'asc' ? (
-      <svg className="w-3 h-3 text-[var(--semantic-brand)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-      </svg>
-    ) : (
-      <svg className="w-3 h-3 text-[var(--semantic-brand)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-      </svg>
+      </span>
     );
   };
 
@@ -286,7 +281,7 @@ export default function UserProfiles() {
       </div>
 
       {/* Table */}
-      <div key={`table-${activeTab}`} className="rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] shadow-sm overflow-hidden animate-fade-in">
+      <div className="rounded-lg border border-[var(--semantic-border-layout)] bg-[var(--semantic-bg-primary)] shadow-sm overflow-hidden">
         {loading ? (
           <SkeletonTable rows={itemsPerPage} cols={tableColumns.length} />
         ) : (
@@ -299,7 +294,7 @@ export default function UserProfiles() {
                       key={col.key}
                       onClick={() => col.sortable && handleSort(col.key)}
                       className={`px-4 py-3 text-left font-semibold text-[var(--semantic-text-secondary)] whitespace-nowrap ${col.width || ''} ${
-                        col.sortable ? 'cursor-pointer hover:bg-[var(--semantic-bg-hover)] transition-colors' : ''
+                        col.sortable ? 'cursor-pointer hover:bg-[var(--semantic-bg-hover)] transition-colors duration-150' : ''
                       }`}
                     >
                       <div className="flex items-center gap-1.5">
@@ -310,78 +305,81 @@ export default function UserProfiles() {
                   ))}
                 </tr>
               </thead>
-              <tbody>
+              <tbody
+                key={`tbody-${activeTab}-${sortConfig.key}-${sortConfig.direction}-${currentPage}-${itemsPerPage}`}
+                className="animate-fade-in"
+              >
                 {paginatedUsers.length === 0 ? (
-                <tr>
-                  <td colSpan={9} className="px-4 py-12 text-center">
-                    <div className="flex flex-col items-center gap-3">
-                      <div className="w-12 h-12 rounded-full bg-[var(--semantic-bg-ui)] flex items-center justify-center">
-                        <svg className="w-6 h-6 text-[var(--semantic-text-placeholder)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium text-[var(--semantic-text-secondary)]">No users found</p>
-                        <p className="text-xs text-[var(--semantic-text-muted)] mt-0.5">Try adjusting your filters or search query</p>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              ) : (
-                paginatedUsers.map((user, index) => (
-                  <RowContextMenu
-                    key={user.id}
-                    items={[
-                      { label: 'View profile', onClick: () => navigate(`/users/${user.id}`) },
-                      { label: 'Edit', onClick: () => navigate(`/users/edit/${user.id}`) },
-                    ]}
-                  >
-                    <td className="px-4 py-3 align-middle text-[var(--semantic-text-primary)] font-medium">{user.id}</td>
-                    <td className="px-4 py-3 align-middle">
-                      <div className="flex items-center gap-3 text-left">
-                        <div className="w-8 h-8 rounded-full bg-[var(--semantic-primary)] flex items-center justify-center shrink-0">
-                          <span className="text-[10px] font-bold text-[var(--semantic-text-inverted)]">{user.avatar}</span>
+                  <tr>
+                    <td colSpan={9} className="px-4 py-12 text-center">
+                      <div className="flex flex-col items-center gap-3">
+                        <div className="w-12 h-12 rounded-full bg-[var(--semantic-bg-ui)] flex items-center justify-center">
+                          <svg className="w-6 h-6 text-[var(--semantic-text-placeholder)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                          </svg>
                         </div>
-                        <p className="text-sm font-medium text-[var(--semantic-text-primary)]">
-                          {user.name}
-                        </p>
+                        <div>
+                          <p className="text-sm font-medium text-[var(--semantic-text-secondary)]">No users found</p>
+                          <p className="text-xs text-[var(--semantic-text-muted)] mt-0.5">Try adjusting your filters or search query</p>
+                        </div>
                       </div>
                     </td>
-                    <td className="px-4 py-3 align-middle text-[var(--semantic-text-secondary)]">{user.email}</td>
-                    <td className="px-4 py-3 align-middle text-[var(--semantic-text-secondary)]">{user.phone}</td>
-                    <td className="px-4 py-3 align-middle text-[var(--semantic-text-secondary)]">{user.department}</td>
-                    <td className="px-4 py-3 align-middle text-[var(--semantic-text-secondary)]">{user.role}</td>
-                    <td className="px-4 py-3 align-middle">
-                      <span className={`text-sm font-medium ${user.isAdmin === 'Group Admin' ? 'text-[var(--semantic-success-primary)]' : 'text-[var(--semantic-text-muted)]'}`}>
-                        {user.isAdmin === 'Group Admin' ? 'Yes' : 'No'}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 align-middle">
-                      <LoginStatusBadge
-                        enabled={user.loginEnabled}
-                        onClick={() => setUserToToggleLogin(user)}
-                      />
-                    </td>
-                    <td className="px-4 py-3 align-middle">
-                      <ActionsMenu
-                        items={[
-                          {
-                            label: 'View profile',
-                            onClick: () => navigate(`/users/${user.id}`),
-                          },
-                          {
-                            label: 'Edit',
-                            onClick: () => navigate(`/users/edit/${user.id}`),
-                          },
-                        ]}
-                      />
-                    </td>
-                  </RowContextMenu>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+                  </tr>
+                ) : (
+                  paginatedUsers.map((user) => (
+                    <RowContextMenu
+                      key={user.id}
+                      items={[
+                        { label: 'View profile', onClick: () => navigate(`/users/${user.id}`) },
+                        { label: 'Edit', onClick: () => navigate(`/users/edit/${user.id}`) },
+                      ]}
+                    >
+                      <td className="px-4 py-3 align-middle text-[var(--semantic-text-primary)] font-medium">{user.id}</td>
+                      <td className="px-4 py-3 align-middle">
+                        <div className="flex items-center gap-3 text-left">
+                          <div className="w-8 h-8 rounded-full bg-[var(--semantic-primary)] flex items-center justify-center shrink-0">
+                            <span className="text-[10px] font-bold text-[var(--semantic-text-inverted)]">{user.avatar}</span>
+                          </div>
+                          <p className="text-sm font-medium text-[var(--semantic-text-primary)]">
+                            {user.name}
+                          </p>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3 align-middle text-[var(--semantic-text-secondary)]">{user.email}</td>
+                      <td className="px-4 py-3 align-middle text-[var(--semantic-text-secondary)]">{user.phone}</td>
+                      <td className="px-4 py-3 align-middle text-[var(--semantic-text-secondary)]">{user.department}</td>
+                      <td className="px-4 py-3 align-middle text-[var(--semantic-text-secondary)]">{user.role}</td>
+                      <td className="px-4 py-3 align-middle">
+                        <span className={`text-sm font-medium ${user.isAdmin === 'Group Admin' ? 'text-[var(--semantic-success-primary)]' : 'text-[var(--semantic-text-muted)]'}`}>
+                          {user.isAdmin === 'Group Admin' ? 'Yes' : 'No'}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 align-middle">
+                        <LoginStatusBadge
+                          enabled={user.loginEnabled}
+                          onClick={() => setUserToToggleLogin(user)}
+                        />
+                      </td>
+                      <td className="px-4 py-3 align-middle">
+                        <ActionsMenu
+                          items={[
+                            {
+                              label: 'View profile',
+                              onClick: () => navigate(`/users/${user.id}`),
+                            },
+                            {
+                              label: 'Edit',
+                              onClick: () => navigate(`/users/edit/${user.id}`),
+                            },
+                          ]}
+                        />
+                      </td>
+                    </RowContextMenu>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         )}
         <Pagination
           currentPage={currentPage}

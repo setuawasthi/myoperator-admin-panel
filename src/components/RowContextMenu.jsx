@@ -56,7 +56,7 @@ export default function RowContextMenu({ children, items }) {
       <tr
         ref={rowRef}
         onContextMenu={handleContextMenu}
-        className="border-t border-[var(--semantic-border-layout)] hover:bg-[var(--semantic-bg-ui)] transition-colors duration-200 animate-fade-in"
+        className="border-t border-[var(--semantic-border-layout)] hover:bg-[var(--semantic-bg-ui)] transition-colors duration-200"
       >
         {children}
       </tr>
