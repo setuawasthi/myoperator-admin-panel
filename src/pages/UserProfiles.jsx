@@ -167,15 +167,15 @@ export default function UserProfiles() {
   ];
 
   const tableColumns = [
-    { key: 'id', label: 'Id', sortable: true, width: 'w-14' },
-    { key: 'name', label: 'Name', sortable: true, width: 'min-w-[180px]' },
-    { key: 'email', label: 'Email', sortable: true, width: 'min-w-[200px]' },
-    { key: 'phone', label: 'Phone', sortable: true, width: 'min-w-[130px]' },
-    { key: 'department', label: 'Group', sortable: true, width: 'min-w-[120px]' },
-    { key: 'role', label: 'Role', sortable: true, width: 'min-w-[110px]' },
-    { key: 'isAdmin', label: 'Admin', sortable: false, width: 'w-16' },
-    { key: 'loginEnabled', label: 'Login', sortable: false, width: 'w-28' },
-    { key: 'actions', label: '', sortable: false, width: 'w-14' },
+    { key: 'id', label: 'Id', sortable: true, width: 'w-[56px]' },
+    { key: 'name', label: 'Name', sortable: true, width: 'w-[200px]' },
+    { key: 'email', label: 'Email', sortable: true, width: 'w-[240px]' },
+    { key: 'phone', label: 'Phone', sortable: true, width: 'w-[160px]' },
+    { key: 'department', label: 'Group', sortable: true, width: 'w-[140px]' },
+    { key: 'role', label: 'Role', sortable: true, width: 'w-[120px]' },
+    { key: 'isAdmin', label: 'Admin', sortable: false, width: 'w-[64px]' },
+    { key: 'loginEnabled', label: 'Login', sortable: false, width: 'w-[112px]' },
+    { key: 'actions', label: '', sortable: false, width: 'w-[56px]' },
   ];
 
   const activeCount = [filters.role, filters.department, filters.search].filter(Boolean).length;
@@ -286,7 +286,7 @@ export default function UserProfiles() {
           <SkeletonTable rows={itemsPerPage} cols={tableColumns.length} />
         ) : (
           <div className="overflow-x-auto min-h-[520px]">
-            <table className="w-full text-sm">
+            <table className="w-full text-sm table-fixed">
               <thead className="bg-[var(--semantic-bg-ui)]">
                 <tr>
                   {tableColumns.map((col) => (
@@ -333,19 +333,19 @@ export default function UserProfiles() {
                     >
                       <td className="px-4 py-3 align-middle text-[var(--semantic-text-primary)] font-medium">{user.id}</td>
                       <td className="px-4 py-3 align-middle">
-                        <div className="flex items-center gap-3 text-left">
+                        <div className="flex items-center gap-3 text-left min-w-0">
                           <div className="w-8 h-8 rounded-full bg-[var(--semantic-primary)] flex items-center justify-center shrink-0">
                             <span className="text-[10px] font-bold text-[var(--semantic-text-inverted)]">{user.avatar}</span>
                           </div>
-                          <p className="text-sm font-medium text-[var(--semantic-text-primary)]">
+                          <p className="text-sm font-medium text-[var(--semantic-text-primary)] truncate">
                             {user.name}
                           </p>
                         </div>
                       </td>
-                      <td className="px-4 py-3 align-middle text-[var(--semantic-text-secondary)]">{user.email}</td>
-                      <td className="px-4 py-3 align-middle text-[var(--semantic-text-secondary)]">{user.phone}</td>
-                      <td className="px-4 py-3 align-middle text-[var(--semantic-text-secondary)]">{user.department}</td>
-                      <td className="px-4 py-3 align-middle text-[var(--semantic-text-secondary)]">{user.role}</td>
+                      <td className="px-4 py-3 align-middle text-[var(--semantic-text-secondary)] truncate">{user.email}</td>
+                      <td className="px-4 py-3 align-middle text-[var(--semantic-text-secondary)] truncate">{user.phone}</td>
+                      <td className="px-4 py-3 align-middle text-[var(--semantic-text-secondary)] truncate">{user.department}</td>
+                      <td className="px-4 py-3 align-middle text-[var(--semantic-text-secondary)] truncate">{user.role}</td>
                       <td className="px-4 py-3 align-middle">
                         <span className={`text-sm font-medium ${user.isAdmin === 'Group Admin' ? 'text-[var(--semantic-success-primary)]' : 'text-[var(--semantic-text-muted)]'}`}>
                           {user.isAdmin === 'Group Admin' ? 'Yes' : 'No'}
