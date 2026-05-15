@@ -285,7 +285,7 @@ export default function UserProfiles() {
         {loading ? (
           <SkeletonTable rows={itemsPerPage} cols={tableColumns.length} />
         ) : (
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto min-h-[520px]">
             <table className="w-full text-sm">
               <thead className="bg-[var(--semantic-bg-ui)]">
                 <tr>
@@ -305,10 +305,7 @@ export default function UserProfiles() {
                   ))}
                 </tr>
               </thead>
-              <tbody
-                key={`tbody-${activeTab}-${sortConfig.key}-${sortConfig.direction}-${currentPage}-${itemsPerPage}`}
-                className="animate-fade-in"
-              >
+              <tbody>
                 {paginatedUsers.length === 0 ? (
                   <tr>
                     <td colSpan={9} className="px-4 py-12 text-center">
