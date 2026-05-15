@@ -145,12 +145,11 @@ button, input, textarea, select, a {
   transition: all 200ms ease-in-out;
 }
 
-/* Kill browser default dark focus ring EVERYWHERE with !important */
-*:focus {
-  outline: none !important;
+/* Kill browser default dark focus ring on form inputs only.
+   Buttons/links keep their Tailwind focus-visible ring utilities. */
+input:focus, textarea:focus, select:focus {
+  outline: none;
 }
-
-/* Keyboard focus uses colored ring (not black) via Tailwind focus-visible utilities */
 
 /* Animations */
 @keyframes fadeIn {
