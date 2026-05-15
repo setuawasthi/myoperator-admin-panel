@@ -7,7 +7,7 @@ import { addUser } from '../data/users';
 import { GROUP_OPTIONS, ROLE_OPTIONS, ADMIN_OPTIONS, ZOHO_TYPE_OPTIONS, TIMEZONE_OPTIONS } from '../data/options';
 
 /* ─── Shared styles (module scope) ─── */
-const inputBase = 'h-10 w-full rounded px-4 text-sm bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] border-[var(--semantic-border-input)] transition-colors duration-200 focus:border-[var(--semantic-border-input-focus)]';
+const inputBase = 'h-10 w-full rounded px-4 text-sm bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] border border-[var(--semantic-border-input)] transition-colors duration-200 focus:border-[var(--semantic-border-input-focus)]';
 const inputNormal = `${inputBase} placeholder:text-[var(--semantic-text-placeholder)] focus:shadow-[0_0_0_1px_rgba(43,188,202,0.15)]`;
 const inputError = `${inputBase} border-[var(--semantic-error-border)] focus:border-[var(--semantic-error-primary)] focus:shadow-[0_0_0_1px_rgba(240,68,56,0.1)]`;
 

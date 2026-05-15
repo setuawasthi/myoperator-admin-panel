@@ -4,7 +4,7 @@ import { users, updateUser } from '../data/users';
 import Toast from '../components/Toast';
 import { SkeletonCard, SkeletonLine, SkeletonInput } from '../components/ui/Skeleton';
 
-const inputBase = 'h-10 w-full rounded px-4 text-sm bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] border-[var(--semantic-border-input)] transition-colors duration-200 focus:border-[var(--semantic-border-input-focus)]';
+const inputBase = 'h-10 w-full rounded px-4 text-sm bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] border border-[var(--semantic-border-input)] transition-colors duration-200 focus:border-[var(--semantic-border-input-focus)]';
 const inputNormal = `${inputBase} placeholder:text-[var(--semantic-text-placeholder)] focus:shadow-[0_0_0_3px_rgba(43,188,202,0.1)]`;
 const selectNormal = `${inputBase} text-[var(--semantic-text-secondary)] focus:shadow-[0_0_0_3px_rgba(43,188,202,0.1)] appearance-none bg-[url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%23717680'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E")] bg-no-repeat bg-[length:16px_16px] bg-[right_12px_center] pr-10`;
 

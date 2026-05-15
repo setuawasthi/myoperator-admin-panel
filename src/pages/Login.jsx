@@ -21,7 +21,7 @@ export default function Login() {
     navigate('/');
   };
 
-  const inputBase = 'h-11 w-full rounded-lg border-[#E9EAEB] bg-white px-4 text-sm text-[#181D27] placeholder:text-[#A2A6B1] focus:border-[#2BBCCA] focus:ring-1 focus:ring-[#2BBCCA]/15 transition-colors duration-200';
+  const inputBase = 'h-11 w-full rounded-lg border border-[#E9EAEB] bg-white px-4 text-sm text-[#181D27] placeholder:text-[#A2A6B1] focus:border-[#2BBCCA] focus:ring-1 focus:ring-[#2BBCCA]/15 transition-colors duration-200';
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#F5F5F5] p-4">
@@ -101,7 +101,7 @@ export default function Login() {
                   value={username}
                   onChange={(e) => { setUsername(e.target.value); setError(''); }}
                   placeholder="Enter your username"
-                  className={`${inputBase} border-[#E9EAEB]`}
+                  className={inputBase}
                 />
               </div>
 
@@ -116,7 +116,7 @@ export default function Login() {
                     value={password}
                     onChange={(e) => { setPassword(e.target.value); setError(''); }}
                     placeholder="Enter your password"
-                    className={`${inputBase} border-[#E9EAEB] pr-10`}
+                    className={`${inputBase} pr-10`}
                   />
                   <button
                     type="button"

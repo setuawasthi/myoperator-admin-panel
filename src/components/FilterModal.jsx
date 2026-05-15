@@ -26,7 +26,7 @@ export default function FilterModal({ isOpen, filters, onApply, onClear, onClose
     onClear();
   };
 
-  const inputBase = "h-10 w-full rounded px-4 text-sm bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] border-[var(--semantic-border-input)] placeholder:text-[var(--semantic-text-placeholder)] focus:border-[var(--semantic-border-input-focus)] focus:shadow-[0_0_0_1px_rgba(43,188,202,0.15)] transition-colors duration-200";
+  const inputBase = "h-10 w-full rounded px-4 text-sm bg-[var(--semantic-bg-primary)] text-[var(--semantic-text-primary)] border border-[var(--semantic-border-input)] placeholder:text-[var(--semantic-text-placeholder)] focus:border-[var(--semantic-border-input-focus)] focus:shadow-[0_0_0_1px_rgba(43,188,202,0.15)] transition-colors duration-200";
 
   if (!isOpen) return null;
 
